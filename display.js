@@ -16,3 +16,7 @@ d3.json("./GeoObs.geojson", function(err, geojson) {
       console.log(geojson)
 }).then(console.log('success'))
 
+console.log(path);
+console.log(svg);
+
+console.log('hey')
