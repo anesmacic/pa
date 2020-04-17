@@ -8,5 +8,10 @@ svg{
     height: 100%;
     width: 100%;
     overflow: visible;
-    
+
+}
+
+.d:hover{
+    color: steelblue;
+    background-color: darkslateblue;
 }
