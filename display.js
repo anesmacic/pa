@@ -14,7 +14,7 @@ d3.json("./GeoObs.geojson", function(err, geojson) {
       svg.append("path").attr("d", path(geojson)); // draw the features
       console.log('boho')
       console.log(geojson)
-}).then(console.log('success'))
+}).then(console.log(svg)).then(console.log(path)).then(console.log("hey"))
 
 console.log(path);
 console.log(svg);
