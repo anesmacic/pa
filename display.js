@@ -9,7 +9,7 @@ var svg = d3.select("body")
 var projection = d3.geoMercator();
 var path = d3.geoPath().projection(projection);
 
-d3.json("./us.json").then(
+d3.json("./us.geojson").then(
   data =>{
     d3.select("svg").append("path")
       .attr("d", path(data));
