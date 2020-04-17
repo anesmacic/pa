@@ -9,17 +9,8 @@ var svg = d3.select("body")
 var projection = d3.geoMercator();
 var path = d3.geoPath().projection(projection);
 
-d3.json("./GeoObs.json", function(error, geojson) {
-  if (error) {
-        return console.warn(error);
-    }
-      projection.fitSize([width,height],geojson); // adjust the projection to the features
-      svg.append("path").attr("d", path(geojson)); // draw the features
-      svg.append(geojson)
-})
-svg.append(geojson)
-d3.select("body").append(geojson)
-console.log(path);
-console.log(svg);
-
-console.log('hey')
+d3.json("./GeoObs.json").then(
+  data =>{
+    console.log(data);
+  }
+)
