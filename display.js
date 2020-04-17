@@ -11,6 +11,8 @@ var path = d3.geoPath().projection(projection);
 
 d3.json("./GeoObs.json").then(
   data =>{
+    d3.select("svg").append("path")
+      .attr("d", path(data));
     console.log(data);
   }
 )
