@@ -9,12 +9,15 @@ var svg = d3.select("body")
 var projection = d3.geoMercator();
 var path = d3.geoPath().projection(projection);
 
-d3.json("./GeoObs.geojson", function(err, geojson) { 
+d3.json("./GeoObs.geojson", function(error, geojson) {
+  if (error) {
+        return console.warn(error);
+    }
       projection.fitSize([width,height],geojson); // adjust the projection to the features
       svg.append("path").attr("d", path(geojson)); // draw the features
-      console.log('boho')
-      console.log(geojson)
-}).then(console.log(svg)).then(console.log(path)).then(console.log("hey"))
+      
+    d3.select("body").append("svg")
+})
 
 console.log(path);
 console.log(svg);
