@@ -13,5 +13,5 @@ d3.json("./GeoObs.geojson", function(err, geojson) {
 
       projection.fitSize([width,height],geojson); // adjust the projection to the features
       svg.append("path").attr("d", path(geojson)); // draw the features
+}).then(console.log('success'))
 
-})
