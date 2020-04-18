@@ -2,10 +2,14 @@
 var width = 500,
     height = 500,
     active = d3.select(null);
-
+/*
 var projection = d3.geoMercator()
     .scale(300)
     .translate([1060, 530 ]);
+*/
+    var projection = d3.geoAlbersUsa()
+				   .translate([width/2, height/2])    // translate to center of screen
+				   .scale([1000]);  
   
 var path = d3.geoPath().projection(projection);
 
@@ -127,17 +131,5 @@ window.addEventListener("resize", redraw);
 
 
 svg.call(zoom);
-
-/*
-var svg = d3.select(".map-container")
-  .append("svg")
-  .attr("width",width)  // apply width,height to svg
-  .attr("height",height);
-
-var projection = d3.geoMercator();
-var path = d3.geoPath().projection(projection);
-
-
-*/
 
 
