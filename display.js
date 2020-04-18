@@ -5,7 +5,7 @@ var width = 500,
 
 var projection = d3.geoMercator()
     .scale(300)
-    .translate([width, height ]);
+    .translate([1060, 530 ]);
   
 var path = d3.geoPath().projection(projection);
 
@@ -58,6 +58,9 @@ var g = svg.append("g");
           .call( zoom ); // updated for d3 v4
     }
     
+var cont = document.getElementsByClassName('.map-container')
+cont.innerHTML = 'LOADING';
+
 d3.json("./gz_2010_us_040_00_500k.json").then(
   data =>{
     data.features.map(feature => {
@@ -83,16 +86,13 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
         .call(zoom );
       })
     }
-      console.log(path.bounds(feature));
     })
-    console.log(d3.geoBounds(data))
-    console.log(d3.geoCentroid(data))
-    console.log(projection.scale())
-    console.log(projection.center())
-   //  projection.fitExtent([[20, 20], [940, 480]], data);
+   
 
   }
-)
+).then(cont.innerHTML = '').then(console.log("LOADED"))
+
+
 function stopped() {
   if (d3.event.defaultPrevented) d3.event.stopPropagation();
 }
