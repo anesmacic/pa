@@ -144,9 +144,9 @@ svg,rect{
 }
 
 path:hover{
-    fill: rgba(170, 167, 167, 0.3);
+    fill: rgba(170, 167, 167, 0.9);
     stroke-width: 1px;
     stroke: white;
-    z-index: 4;
+    z-index: 10;
 }
 

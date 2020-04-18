@@ -25,8 +25,8 @@ svg.append("rect")
     .on("click", reset);
 
 var g = svg.append("g");
-  
-    function clicked(d) {
+
+function clicked(d) {
       if (active.node() === this) return reset();
       active.classed("active", false);
       active = d3.select(this).classed("active", true);
@@ -65,30 +65,65 @@ var g = svg.append("g");
 var cont = document.getElementsByClassName('.map-container')
 cont.innerHTML = 'LOADING';
 
+var drivers = [];
+
+var fatals = [];
+d3.json("./fatals.json").then(
+  data => {
+    fatals.push(data.FATALS)
+  }
+)
+console.log(fatals)
+
+// is performance better with queue and defer for jsons with async join function?
+
 d3.json("./gz_2010_us_040_00_500k.json").then(
+
+  
+
   data =>{
+
+    var minval = 0;
+    var maxval = 0;
+    var fatalvalue = 0;
+    Object.keys(fatals[0]).forEach(function(key) {
+      fatalvalue = fatals[0][key]
+      if (minval > fatalvalue || minval === 0){
+      minval = fatalvalue}
+    if (maxval < fatalvalue){
+      maxval = fatalvalue}
+  }); 
+
+
+    paint = d3.scaleLinear()
+            .domain([minval,maxval])
+            .range(["yellow", "red"])
+
     data.features.map(feature => {
     //  if (feature.properties.STATE !== "15" && feature.properties.STATE !== "02")
       {
+      fatalval = fatals[0][feature.properties.NAME]
+        
     d3.select("svg").append("path")
       .attr("d", path(feature))
       .attr("class", "feature")
+      .style('fill',paint(fatalval))
       .on("zoom",zoom)
       .on('click',function(){
         var d = (this);
-        console.log(d.getBBox())
         d.style.fill = 'red';
-        console.log(path.bounds(d))
         var box = d.getBBox()
+        console.log(feature)
       
         
-   //     scale = Math.max(8, Math.min(8, 0.9 / Math.max(box.width / width, box.height / height))),
-    //    translate = [width / 2 - scale * box.x, height / 2 - scale * box.y];
+        scale = Math.max(8, Math.min(8, 0.9 / Math.max(box.width / width, box.height / height))),
+        translate = [width / 2 - scale * box.x, height / 2 - scale * box.y];
   
     svg.transition()
         .duration(10)
         .call(zoom );
       })
+
     }
     })
    
