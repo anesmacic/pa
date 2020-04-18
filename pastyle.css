@@ -47,7 +47,7 @@ path{
     stroke: white;
     stroke-width: 0px;
     background: transparent;
-    transition: all 0.8s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 path:hover{
     fill: rgba(170, 167, 167, 0.9);
