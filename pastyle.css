@@ -13,15 +13,16 @@ title{
 body{
     display: inline-block;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  
+    align-items: center;
+    justify-content: center;
+    
 }
 header{
-    position: fixed;
     display: flex;
     justify-content: space-between;
     top: 0;
-    width: 100%;
-    max-width: 900px;
+    width: 100vw;
+    max-width: 1000px;
     height: auto;
     align-items: center;
     background-color: rgba(49, 43, 41, 0.534);
@@ -49,21 +50,52 @@ a,p,h1{
     display: contents;
 }
 
+.bcont{
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 20px;
+    display: contents;
+    align-items: center;
+    justify-content: center;
+
+}
+
+button{
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    height: 5vh;
+    margin-top: 20px;
+    width: 100%;
+    align-self: center;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+}
+
+button:hover{
+    border: 2px solid rgba(255, 255, 255, 0.851);
+    border-radius: 8px;
+    background-color: rgba(48, 41, 40, 0.76);
+
+}
+
+svg:hover{
+    border: 1px solid rgba(255, 255, 255, 0.951);
+
+}
+
 svg,.map-container,rect{
-    position: absolute;
     height: 60vh;
     border: 1px solid rgba(255, 255, 255, 0.151);
     margin-top: 5vh;
-    width: 100%;
-    max-width: 900px;
+    width: 100vw;
+    max-width: 1000px;
     padding: 10px 10px;
+    transition: all 0.2s ease-in-out;
 
 }
 
 
 
 svg{
-    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,7 +108,6 @@ svg{
 }
 
 path{
-    position: fixed;
     fill: #c9c3bc81;
     stroke: white;
     stroke-width: 0.2px;
