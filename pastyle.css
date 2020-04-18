@@ -104,14 +104,13 @@ button:hover,.small-button:active{
     border: 1px solid rgba(255, 255, 255, 0.151);
 }
 
-svg:hover{
-    border: 1px solid rgba(255, 255, 255, 0.466);
 
-}
 
 svg,.map-container,rect{
     height: 60vh;
-    border: 1px solid rgba(255, 255, 255, 0.151);
+    border-left: 1px solid rgba(255, 255, 255, 0.151);
+    border-right: 1px solid rgba(255, 255, 255, 0.151);
+    border-top: 1px solid rgba(255, 255, 255, 0.151);
     margin-top: 5vh;
     width: 100vw;
     max-width: 1000px;
@@ -173,3 +172,27 @@ path:hover{
     stroke: white;
 }
 
+.colormap{
+    display: inline-block;
+}
+svg.cmap{
+    top: 0vh;
+    margin-top: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.151);
+    border-right: 1px solid rgba(255, 255, 255, 0.151);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.151);
+    border-top: none;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+text{
+    z-index: 20;
+    position: relative;
+}
+.vals{
+    display: flex;
+    justify-content: space-between;
+}

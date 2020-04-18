@@ -22,29 +22,12 @@ svg.append("rect")
     .attr("class", "background")
     .attr("width", width)
     .attr("height", height)
-    .on("click", reset)
+    
     .on("mouseover",oversvg);
 
 var g = svg.append("g");
 
-function clicked(d) {
-      if (active.node() === this) return reset();
-      active.classed("active", false);
-      active = d3.select(this).classed("active", true);
-      
-      var bounds = path.bounds(d),
-          dx = bounds[1][0] - bounds[0][0],
-          dy = bounds[1][1] - bounds[0][1],
-          x = (bounds[0][0] + bounds[1][0]) / 2,
-          y = (bounds[0][1] + bounds[1][1]) / 2,
-          scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height))),
-          translate = [width / 2 - scale * x, height / 2 - scale * y];
-    
-      svg.transition()
-          .duration(750)
-          // .call(zoom.translate(translate).scale(scale).event); // not in d3 v4
-          .call(zoom ); // updated for d3 v4
-    }
+
 
     function zoomed() {
       g.style("stroke-width", 1.5 / d3.event.transform.k + "px");
@@ -52,15 +35,7 @@ function clicked(d) {
       g.attr("transform", d3.event.transform); // updated for d3 v4
     }
 
-    function reset() {
-      active.classed("active", false);
-      active = d3.select(null);
-    
-      svg.transition()
-          .duration(750)
-          // .call( zoom.transform, d3.zoomIdentity.translate(0, 0).scale(1) ); // not in d3 v4
-          .call( zoom ); // updated for d3 v4
-    }
+   
     
 var cont = document.getElementsByClassName('.map-container')
 cont.innerHTML = 'LOADING';
@@ -77,11 +52,7 @@ d3.json("./fatals.json").then(
 // is performance better with queue and defer for jsons with async join function?
 
 d3.json("./gz_2010_us_040_00_500k.json").then(
-
-  
-
   data =>{
-
     var minval = 0;
     var maxval = 0;
     var fatalvalue = 0;
@@ -93,16 +64,42 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
       maxval = fatalvalue}
   }); 
 
-
     paint = d3.scaleLinear()
             .domain([minval,maxval])
-            .range(["yellow", "red"])
+            .range(["#173F5F", "#b71c1c"])
+
+  
+
+      var svgc = d3.select(".colormap").append("svg").attr("class","cmap")
+      var linearGradient = svgc.append("linearGradient")
+      .attr("id", "linear-gradient");
+      linearGradient.append("stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#173F5F")
+    .attr("stop-opacity","0.5"); //light blue
+
+//Set the color for the end (100%)
+linearGradient.append("stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "#b71c1c")
+    .attr("stop-opacity","1"); //light blue
+    //dark blue
+
+    svgc.append("rect")
+    .attr("width", width)
+    .attr("height", 20)
+    .style("fill", "url(#linear-gradient)");
+    
+       
+   // cmap = document.querySelector('.cmin');
+   // cmap.innerHTML = minval.toString();
+   // cmap2 = document.querySelector('.cmax');
+   // cmap2.innerHTML = maxval.toString();
 
     data.features.map(feature => {
-    //  if (feature.properties.STATE !== "15" && feature.properties.STATE !== "02")
       {
       fatalval = fatals[0][feature.properties.NAME]
-        
+
     d3.select("svg").append("path")
       .attr("d", path(feature))
       .attr("class", "feature")
@@ -111,22 +108,6 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
       .style('fill',paint(fatalval))
       .on('mouseover',hovering)
       .on("zoom",zoom)
-
-   /*   .on('click',function(){
-        var d = (this);
-        d.style.fill = 'red';
-        var box = d.getBBox()
-        console.log(feature)
-      
-        
-        scale = Math.max(8, Math.min(8, 0.9 / Math.max(box.width / width, box.height / height))),
-        translate = [width / 2 - scale * box.x, height / 2 - scale * box.y];
-  
-    svg.transition()
-        .duration(10)
-        .call(zoom );
-      })
-*/
     } 
     })
    

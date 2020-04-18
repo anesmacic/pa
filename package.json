@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/anesmacic/pa#readme",
   "dependencies": {
+    "d3-colorbar": "0.0.1",
     "express": "^4.17.1"
   }
 }
