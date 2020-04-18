@@ -39,6 +39,7 @@ svg{
     width: 100%;
     overflow: visible;
     background: transparent;
+    transform: scale(2);
 }
 
 path{
@@ -52,6 +53,9 @@ path:hover{
     fill: red;
     stroke: 1px solid black;
     z-index: 1;
+    transform-origin: (50%,50%);
     transform: scale(1.1);
+    
+
 }
 
