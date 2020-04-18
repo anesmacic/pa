@@ -2,12 +2,16 @@
     margin: none;
     padding: none;
     display: inline-block;
+    background-color: black;
+    color: white;
 }
 
 header{
     width: 100vw;
     height: 5vh;
-    
+    align-items: center;
+    background-color: black;
+    color: white;
 }
 
 .map-container{
@@ -17,16 +21,23 @@ header{
 }
 
 svg{
+    position: relative;
     visibility: visible;
     height: 100%;
     width: 100%;
     overflow: visible;
+    background: transparent;
 }
 
-path:hover{
+path{
+    position: relative;
     fill: steelblue;
-    stroke: darkslateblue;
+    stroke: 1px solid white;
+    background: transparent;
+}
+path:hover{
+    fill: red;
+    stroke: 1px solid black;
     z-index: 1;
-    transform: scale(2);
 }
 
