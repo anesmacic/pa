@@ -1,7 +1,7 @@
 var width = window.screen.width;
 var height = window.screen.height;
 
-var svg = d3.select("body")
+var svg = d3.select(".map-container")
   .append("svg")
   .attr("width",width)  // apply width,height to svg
   .attr("height",height);

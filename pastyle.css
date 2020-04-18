@@ -1,6 +1,19 @@
 *{
     margin: none;
     padding: none;
+    display: inline-block;
+}
+
+header{
+    width: 100vw;
+    height: 5vh;
+    
+}
+
+.map-container{
+    position: absolute;
+    width: 100vw;
+    height: 95vh;
 }
 
 svg{
@@ -8,9 +21,7 @@ svg{
     height: 100%;
     width: 100%;
     overflow: visible;
-    transform: scale(2);
 }
-
 
 path:hover{
     fill: steelblue;
