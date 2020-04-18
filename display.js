@@ -1,5 +1,5 @@
-var width = window.screen.width;
-var height = window.screen.height;
+var width = 500;
+var height = 500;
 
 var svg = d3.select(".map-container")
   .append("svg")
