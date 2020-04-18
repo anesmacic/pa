@@ -11,7 +11,8 @@ svg{
 
 }
 
-.d:hover{
+path:hover{
     color: steelblue;
     background-color: darkslateblue;
+    z-index: 1;
 }
