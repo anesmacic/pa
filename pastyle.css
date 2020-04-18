@@ -6,6 +6,10 @@
     color: white;
 }
 
+title{
+    visibility: hidden;
+}
+
 header{
     width: 100vw;
     height: 5vh;
@@ -22,6 +26,7 @@ header{
 
 svg{
     position: relative;
+    display: flex;
     visibility: visible;
     height: 100%;
     width: 100%;
