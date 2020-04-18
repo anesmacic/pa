@@ -29,8 +29,14 @@ h1{
     height: 95vh;
 }
 
+.rect{
+    position: fixed;
+}
+
+
+
 svg{
-    position: relative;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,18 +48,26 @@ svg{
 }
 
 path{
-    position: relative;
+    position: fixed;
     fill: #c9c3bc81;
     stroke: white;
-    stroke-width: 0px;
+    stroke-width: 0.2px;
     background: transparent;
     transition: all 0.2s ease-in-out;
 }
+
+path:hover,path:active{
+    transform: scale(1.01);
+}
+svg,rect{
+    fill: #1E1A19;
+
+}
+
 path:hover{
-    fill: rgba(170, 167, 167, 0.9);
+    fill: rgba(170, 167, 167, 0.3);
     stroke-width: 1px;
     stroke: white;
     z-index: 4;
-    transform: scale(1.01);
 }
 
