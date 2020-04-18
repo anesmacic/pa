@@ -14,7 +14,7 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
 
     data.features.map(feature => {
     d3.select("svg").append("path")
-      .attr("state", path(feature));
+      .attr("d", path(feature));
       console.log(feature);
     })
 
