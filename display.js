@@ -109,6 +109,7 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
       .attr("class", "feature")
       .style('fill',paint(fatalval))
       .on("zoom",zoom)
+      
    /*   .on('click',function(){
         var d = (this);
         d.style.fill = 'red';
