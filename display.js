@@ -49,6 +49,7 @@ d3.json("./fatals.json").then(
   }
 )
 
+var paint = [];
 // is performance better with queue and defer for jsons with async join function?
 
 d3.json("./gz_2010_us_040_00_500k.json").then(
@@ -64,7 +65,7 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
       maxval = fatalvalue}
   }); 
 
-    paint = d3.scaleLinear()
+   paint = d3.scaleLinear()
             .domain([minval,maxval])
             .range(["#173F5F", "#b71c1c"])
 
@@ -76,14 +77,12 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
       linearGradient.append("stop")
     .attr("offset", "0%")
     .attr("stop-color", "#173F5F")
-    .attr("stop-opacity","0.5"); //light blue
+    .attr("stop-opacity","0.5"); 
 
-//Set the color for the end (100%)
 linearGradient.append("stop")
     .attr("offset", "100%")
     .attr("stop-color", "#b71c1c")
-    .attr("stop-opacity","1"); //light blue
-    //dark blue
+    .attr("stop-opacity","1"); 
 
     svgc.append("rect")
     .attr("width", width)
@@ -145,6 +144,49 @@ var zoom = d3.zoom()
           svg.selectAll('path')
            .attr('transform', d3.event.transform);
 });
+
+
+function statelevel(){
+
+  var [...elements] = document.querySelectorAll("path")
+  console.log(elements)
+  elements.map((element) => {
+    element.setAttribute('fill',paint(element.getAttribute('fatality')))
+    element.style.fill = paint(element.getAttribute('fatality'))
+  })
+
+}
+
+
+
+function command(){
+  var element = document.querySelector("#state")
+  console.log(element.getAttribute("active"))
+  if (element.getAttribute("active") === "false"){
+    element.setAttribute("active","true")
+    element.style.backgroundColor =  "rgba(197, 189, 188, 0.76)";
+
+      statelevel()
+  }
+    else{
+      element.setAttribute("active","false")
+      element.style.backgroundColor =  "#1E1A19";
+
+      clearColoring()
+    }
+
+
+}
+
+function clearColoring(){
+  var [...elements] = document.querySelectorAll("path")
+  console.log("clear")
+  elements.map((element) => {
+    element.setAttribute('fill','gray')
+    element.style.fill = 'gray';
+  })
+  redraw()
+}
 
 function redraw(){
 

@@ -92,8 +92,10 @@ button{
     margin-top: 1px;
 }
 
+#state{
+background-color: rgba(197, 189, 188, 0.76);
 
-
+}
 button:hover,.small-button:active{
     border: 2px solid rgba(255, 255, 255, 0.851);
     background-color: rgba(197, 189, 188, 0.76);
