@@ -8,7 +8,7 @@ var projection = d3.geoMercator()
     .translate([1060, 530 ]);
 */
     var projection = d3.geoAlbersUsa()
-				   .translate([width/2, height/2])    // translate to center of screen
+				   .translate([width, height/2])    // translate to center of screen
 				   .scale([1000]);  
   
 var path = d3.geoPath().projection(projection);
@@ -82,8 +82,8 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
         var box = d.getBBox()
       
         
-        scale = Math.max(8, Math.min(8, 0.9 / Math.max(box.width / width, box.height / height))),
-        translate = [width / 2 - scale * box.x, height / 2 - scale * box.y];
+   //     scale = Math.max(8, Math.min(8, 0.9 / Math.max(box.width / width, box.height / height))),
+    //    translate = [width / 2 - scale * box.x, height / 2 - scale * box.y];
   
     svg.transition()
         .duration(10)
