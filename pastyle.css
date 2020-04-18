@@ -10,27 +10,43 @@ title{
     visibility: hidden;
 }
 
+body{
+    display: inline-block;
+}
 header{
-    width: 100vw;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    width: 100%;
+    max-width: 900px;
     height: auto;
     align-items: center;
-    background-color: #1E1A19;
+    background-color: rgba(49, 43, 41, 0.534);
     color: white;
+    padding: 10px 10px;
+    z-index: 10;
 }
 
-h1{
+a,p,h1{
     height: 100%;
     text-align: center;
+    background: transparent;
 }
 
 .map-container{
-    position: absolute;
-    width: 100vw;
-    height: 95vh;
+    display: contents;
 }
 
-.rect{
-    position: fixed;
+svg,.map-container,rect{
+    position: absolute;
+    height: 60vh;
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    margin-top: 5vh;
+    width: 100%;
+    max-width: 900px;
+    padding: 10px 10px;
+
 }
 
 
@@ -41,10 +57,11 @@ svg{
     align-items: center;
     justify-content: center;
     visibility: visible;
-    height: 100%;
-    width: 100%;
-    overflow: visible;
+    
     background: transparent;
+    top: 10vh;
+
+    overflow: hidden;
 }
 
 path{
@@ -56,9 +73,7 @@ path{
     transition: all 0.2s ease-in-out;
 }
 
-path:hover,path:active{
-    transform: scale(1.01);
-}
+
 svg,rect{
     fill: #1E1A19;
 

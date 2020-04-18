@@ -1,5 +1,5 @@
 
-var width = 960,
+var width = 500,
     height = 500,
     active = d3.select(null);
 
@@ -22,10 +22,6 @@ svg.append("rect")
 
 var g = svg.append("g");
   
-
-
-
-
     function clicked(d) {
       if (active.node() === this) return reset();
       active.classed("active", false);
@@ -112,8 +108,7 @@ var zoom = d3.zoom()
 function redraw(){
 
   // Extract the width and height that was computed by CSS.
-  var width = window.innerWidth;
-  var height = window.innerHeight;
+  var width = 500;
 
   // Use the extracted size to set the size of an SVG element.
   svg
@@ -127,7 +122,6 @@ function redraw(){
 
 
 
-redraw();
 
 window.addEventListener("resize", redraw);
 
