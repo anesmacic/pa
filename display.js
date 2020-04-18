@@ -22,7 +22,8 @@ svg.append("rect")
     .attr("class", "background")
     .attr("width", width)
     .attr("height", height)
-    .on("click", reset);
+    .on("click", reset)
+    .on("mouseover",oversvg);
 
 var g = svg.append("g");
 
@@ -107,9 +108,12 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
     d3.select("svg").append("path")
       .attr("d", path(feature))
       .attr("class", "feature")
+      .attr('fatality',fatalval)
+      .attr('name',feature.properties.NAME)
       .style('fill',paint(fatalval))
+      .on('mouseover',hovering)
       .on("zoom",zoom)
-      
+
    /*   .on('click',function(){
         var d = (this);
         d.style.fill = 'red';
@@ -133,6 +137,27 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
 ).then(cont.innerHTML = '').then(console.log("LOADED"))
 
 
+function cursor(e){
+  let mouse = document.querySelector('.country');
+  mouse.style.top = e.pageY - 30 + 'px';
+  mouse.style.left = e.pageX - 10 + 'px';
+
+}
+
+function hovering(){
+  var state = document.querySelector(".country");
+  p = this;
+  state.style.visibility = 'visible';
+  var str = 'State: '.concat(p.getAttribute("name"),'<br/>','Fatalities: ',p.getAttribute('fatality'));
+  state.innerHTML = str;
+  console.log(str)
+}
+
+function oversvg(){
+  var state = document.querySelector(".country");
+  state.innerHTML = '';
+  state.style.visibility = 'hidden';
+}
 function stopped() {
   if (d3.event.defaultPrevented) d3.event.stopPropagation();
 }
@@ -142,7 +167,6 @@ var zoom = d3.zoom()
         console.log(svg.selectAll('path'))
           svg.selectAll('path')
            .attr('transform', d3.event.transform);
-
 });
 
 function redraw(){
@@ -161,6 +185,7 @@ function redraw(){
 }
 
 
+window.addEventListener('mousemove',cursor);
 
 
 window.addEventListener("resize", redraw);
