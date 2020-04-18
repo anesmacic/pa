@@ -29,19 +29,14 @@ h1{
     height: 95vh;
 }
 
-body{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 svg{
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     visibility: visible;
-    
+    height: 100%;
+    width: 100%;
     overflow: visible;
     background: transparent;
 }
@@ -49,16 +44,16 @@ svg{
 path{
     position: relative;
     fill: #c9c3bc81;
-    stroke:  white;
-    stroke-width: 2px;
+    stroke: white;
+    stroke-width: 1px;
     background: transparent;
     transition: all 0.8s ease-in-out;
 }
 path:hover{
-    fill: rgba(131, 129, 129, 0.9);
+    fill: rgba(170, 167, 167, 0.9);
     stroke-width: 4px;
-
     stroke: white;
     z-index: 4;
+    transform: scale(1.01);
 }
 
