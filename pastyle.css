@@ -12,10 +12,15 @@ title{
 
 header{
     width: 100vw;
-    height: 5vh;
+    height: auto;
     align-items: center;
     background-color: black;
     color: white;
+}
+
+h1{
+    height: 100%;
+    text-align: center;
 }
 
 .map-container{
@@ -27,6 +32,8 @@ header{
 svg{
     position: relative;
     display: flex;
+    align-items: center;
+    justify-content: center;
     visibility: visible;
     height: 100%;
     width: 100%;
@@ -39,10 +46,12 @@ path{
     fill: steelblue;
     stroke: 1px solid white;
     background: transparent;
+    transition: all 0.3s ease-in-out;
 }
 path:hover{
     fill: red;
     stroke: 1px solid black;
     z-index: 1;
+    transform: scale(1.1);
 }
 
