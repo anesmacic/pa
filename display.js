@@ -31,8 +31,7 @@ function clicked(d) {
       if (active.node() === this) return reset();
       active.classed("active", false);
       active = d3.select(this).classed("active", true);
-      console.log(d);
-      console.log(path.bounds(d))
+      
       var bounds = path.bounds(d),
           dx = bounds[1][0] - bounds[0][0],
           dy = bounds[1][1] - bounds[0][1],
@@ -74,7 +73,6 @@ d3.json("./fatals.json").then(
     fatals.push(data.FATALS)
   }
 )
-console.log(fatals)
 
 // is performance better with queue and defer for jsons with async join function?
 
@@ -134,7 +132,7 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
    
 
   }
-).then(cont.innerHTML = '').then(console.log("LOADED"))
+)
 
 
 function cursor(e){
@@ -150,7 +148,6 @@ function hovering(){
   state.style.visibility = 'visible';
   var str = 'State: '.concat(p.getAttribute("name"),'<br/>','Fatalities: ',p.getAttribute('fatality'));
   state.innerHTML = str;
-  console.log(str)
 }
 
 function oversvg(){
@@ -164,7 +161,6 @@ function stopped() {
 
 var zoom = d3.zoom()
       .on('zoom', function() {
-        console.log(svg.selectAll('path'))
           svg.selectAll('path')
            .attr('transform', d3.event.transform);
 });
