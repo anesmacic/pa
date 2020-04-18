@@ -108,7 +108,7 @@ button:hover,.small-button:active{
 
 
 
-svg,.map-container,rect{
+svg,.map-container{
     height: 60vh;
     border-left: 1px solid rgba(255, 255, 255, 0.151);
     border-right: 1px solid rgba(255, 255, 255, 0.151);
@@ -119,6 +119,10 @@ svg,.map-container,rect{
     padding: 10px 10px;
     transition: all 0.2s ease-in-out;
 
+}
+#cmaprect{
+    width: 100vw;
+    max-width: 100px;
 }
 
 .country{

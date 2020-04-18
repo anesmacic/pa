@@ -77,7 +77,7 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
       linearGradient.append("stop")
     .attr("offset", "0%")
     .attr("stop-color", "#173F5F")
-    .attr("stop-opacity","0.5"); 
+    .attr("stop-opacity","1"); 
 
 linearGradient.append("stop")
     .attr("offset", "100%")
@@ -85,6 +85,7 @@ linearGradient.append("stop")
     .attr("stop-opacity","1"); 
 
     svgc.append("rect")
+    .attr("id","cmaprect")
     .attr("width", width)
     .attr("height", 20)
     .style("fill", "url(#linear-gradient)");
@@ -185,6 +186,8 @@ function clearColoring(){
     element.setAttribute('fill','gray')
     element.style.fill = 'gray';
   })
+
+
   redraw()
 }
 
