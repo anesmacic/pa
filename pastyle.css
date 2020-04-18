@@ -45,13 +45,13 @@ path{
     position: relative;
     fill: #c9c3bc81;
     stroke: white;
-    stroke-width: 1px;
+    stroke-width: 0px;
     background: transparent;
     transition: all 0.8s ease-in-out;
 }
 path:hover{
     fill: rgba(170, 167, 167, 0.9);
-    stroke-width: 4px;
+    stroke-width: 1px;
     stroke: white;
     z-index: 4;
     transform: scale(1.01);
