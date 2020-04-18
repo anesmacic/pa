@@ -39,7 +39,6 @@ svg{
     width: 100%;
     overflow: visible;
     background: transparent;
-    transform: scale(2);
 }
 
 path{
@@ -47,7 +46,7 @@ path{
     fill: steelblue;
     stroke: 1px solid white;
     background: transparent;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.8s ease-in-out;
 }
 path:hover{
     fill: red;
