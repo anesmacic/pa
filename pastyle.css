@@ -34,6 +34,7 @@ header{
 h1{
     font-weight: lighter;
     letter-spacing: 3px;
+    padding-left: 40px;
 }
 a,p{
     font-weight: lighter;
@@ -46,6 +47,10 @@ a,p,h1{
     background: transparent;
 }
 
+
+p{
+    padding-right: 10px;
+}
 .map-container{
     display: contents;
 }
@@ -60,6 +65,15 @@ a,p,h1{
 
 }
 
+.options-overlay{
+    display: flex;
+    flex-direction: column;
+}
+.options-level,.options-type{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 button{
     border: 1px solid rgba(255, 255, 255, 0.151);
     height: 5vh;
@@ -69,12 +83,20 @@ button{
     transition: all 0.2s ease-in-out;
     outline: none;
 }
+.small-button{
+    margin-top: 1px;
+}
 
-button:hover{
+
+
+button:hover,.small-button:active{
     border: 2px solid rgba(255, 255, 255, 0.851);
-    border-radius: 8px;
     background-color: rgba(48, 41, 40, 0.76);
 
+}
+
+.small-button:hover{
+    border: 1px solid rgba(255, 255, 255, 0.151);
 }
 
 svg:hover{
