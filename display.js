@@ -6,7 +6,7 @@ var svg = d3.select(".map-container")
   .attr("width",width)  // apply width,height to svg
   .attr("height",height);
 
-var projection = d3.geoMercator().scale(4);
+var projection = d3.geoMercator().scale(10000);
 var path = d3.geoPath().projection(projection);
 
 d3.json("./gz_2010_us_040_00_500k.json").then(
