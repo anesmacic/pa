@@ -202,3 +202,23 @@ text{
     display: flex;
     justify-content: space-between;
 }
+
+.analysiscontainer{
+    width: 100vw;
+    max-width: 1000px;
+    padding: 10px 10px;
+    display: flex;
+    align-items: left;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.analysiscontent .h1{
+    font-weight: lighter;
+    letter-spacing: 1.7px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.151);
+}
+
+#rq{
+    font-size: large;
+}

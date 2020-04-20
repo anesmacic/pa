@@ -1,5 +1,5 @@
 
-var width = 500,
+var width = window.innerWidth,
     height = 500,
     active = d3.select(null);
 /*
@@ -8,7 +8,7 @@ var projection = d3.geoMercator()
     .translate([1060, 530 ]);
 */
     var projection = d3.geoAlbersUsa()
-				   .translate([width, height/2])    // translate to center of screen
+				   .translate([width/3, height/2])    // translate to center of screen
 				   .scale([1000]);  
   
 var path = d3.geoPath().projection(projection);
@@ -49,13 +49,31 @@ d3.json("./fatals.json").then(
   }
 )
 
+var drivers = [];
+
+d3.json("./drivers.json").then(
+  data => {
+    drivers.push([Object.entries(data)[0][1]])
+
+  
+  }
+)
+
+
+
 var paint = [];
+
+var minval = 0;
+var maxval = 0;
+
+var paintnormal = [];
+var minvaldrivers = 0;
+var maxvaldrivers = 0;
 // is performance better with queue and defer for jsons with async join function?
 
 d3.json("./gz_2010_us_040_00_500k.json").then(
   data =>{
-    var minval = 0;
-    var maxval = 0;
+    
     var fatalvalue = 0;
     Object.keys(fatals[0]).forEach(function(key) {
       fatalvalue = fatals[0][key]
@@ -65,11 +83,21 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
       maxval = fatalvalue}
   }); 
 
+
+  var drivervalue = 0;
+  Object.keys(drivers[0][0]).forEach(function(key) {
+    drivervalue = drivers[0][0][key]
+    if (minvaldrivers > drivervalue || minvaldrivers === 0){
+    minvaldrivers = drivervalue}
+  if (maxvaldrivers < drivervalue){
+    maxvaldrivers = drivervalue}
+}); 
+
+
+
    paint = d3.scaleLinear()
             .domain([minval,maxval])
             .range(["#173F5F", "#b71c1c"])
-
-  
 
       var svgc = d3.select(".colormap").append("svg").attr("class","cmap")
       var linearGradient = svgc.append("linearGradient")
@@ -99,17 +127,20 @@ linearGradient.append("stop")
     data.features.map(feature => {
       {
       fatalval = fatals[0][feature.properties.NAME]
-
+      driversval = drivers[0][0][feature.properties.NAME]
     d3.select("svg").append("path")
       .attr("d", path(feature))
       .attr("class", "feature")
       .attr('fatality',fatalval)
+      .attr('fatalityn',fatalval/driversval*1000000)
+      .attr('ndrivers',driversval)
       .attr('name',feature.properties.NAME)
       .style('fill',paint(fatalval))
       .on('mouseover',hovering)
       .on("zoom",zoom)
     } 
     })
+    populatepaintnormalizer()
    
 
   }
@@ -127,7 +158,9 @@ function hovering(){
   var state = document.querySelector(".country");
   p = this;
   state.style.visibility = 'visible';
-  var str = 'State: '.concat(p.getAttribute("name"),'<br/>','Fatalities: ',p.getAttribute('fatality'));
+  var str = 'State: '.concat(p.getAttribute("name"),'<br/>','Fatalities: ',p.getAttribute('fatality'),'<br/>',
+  
+    'Fatals/mil-driver: ',(parseInt(p.getAttribute('fatalityn'))));
   state.innerHTML = str;
 }
 
@@ -147,6 +180,50 @@ var zoom = d3.zoom()
 });
 
 
+function populatepaintnormalizer(){
+
+  var [...elements] = document.querySelectorAll("path")
+  var minv = 0;
+  var maxv = 0;
+  var fv = 0;
+  elements.forEach(function(element) {
+    fv = element.getAttribute('fatalityn');
+    if(!isNaN(fv)){
+      if (minv === 0 || fv - minv < 0){
+        minv = fv}
+      if (maxv === 0 || maxv-fv < 0){
+        maxv = fv}
+        
+    }
+    else{
+    }
+  })
+
+    paintnormal = d3.scaleLinear()
+    .domain([minv,maxv])
+    .range(["#173F5F", "#b71c1c"])
+  console.log(minv);
+  console.log(maxv);
+    
+}
+
+function normalizebymildrivers(){
+  var [...elements] = document.querySelectorAll("path")
+  
+  elements.map((element) => {
+    element.setAttribute('fill',paintnormal(element.getAttribute('fatalityn')))
+    element.style.fill = paintnormal(element.getAttribute('fatalityn'))
+
+
+  })
+
+  var element = document.querySelector("#state")
+  element.setAttribute("active","false")
+
+}
+
+
+
 function statelevel(){
 
   var [...elements] = document.querySelectorAll("path")
@@ -162,7 +239,6 @@ function statelevel(){
 
 function command(){
   var element = document.querySelector("#state")
-  console.log(element.getAttribute("active"))
   if (element.getAttribute("active") === "false"){
     element.setAttribute("active","true")
     element.style.backgroundColor =  "rgba(197, 189, 188, 0.76)";

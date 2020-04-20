@@ -13,7 +13,7 @@
         <header>
             <h1>PREDICTIVE ANALYTICS</h1>
             <p>crunching the <a>FARS</a> 2018 dataset</p>
-        </header>
+        </header>   
 
         <div class="map-container">
 
@@ -34,7 +34,7 @@
                 <button class="small-button">Fatalities</button>
                 <button class="small-button">Medical Response Time</button>
                 <button class="small-button">Rural-Urban Ratio</button>
-                <button class="small-button">Normalize per million drivers</button>
+                <button class="small-button" id="normalize" active="true" onclick="normalizebymildrivers()">Normalize per million drivers</button>
 
             </div>
         </div>
@@ -42,6 +42,16 @@
         <div class="bcont">
             <button class="button">TAKE A PEEK INTO THE DATA ANALYSIS</button>
         </div>
+
+        <div class="analysiscontainer">
+            <h1>Missing Data Patterns</h1>
+            <div class="analysiscontent">
+                <h1>Medical Response Time</h1>
+            </div>
+        </div>
+       
+
+
         <div class="country"> </div>
 
         <script src="https://d3js.org/d3.v5.js"></script>
