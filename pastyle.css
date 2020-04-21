@@ -198,7 +198,7 @@ svg.cmap{
 
 text{
     z-index: 20;
-    position: relative;
+    opacity: 1;
 }
 .vals{
     display: flex;

@@ -102,7 +102,14 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
     linearGradient.append("stop")
                   .attr("offset", "100%")
                   .attr("stop-color", "#b71c1c")
-                  .attr("stop-opacity","1"); 
+                  .attr("stop-opacity","1");
+    linearGradient.append("text")
+    .text('20val') 
+                  .attr("y","10px")
+                  .attr("x","20px")
+                  .attr("fill",'white')
+                  .attr("font-family", "sans-serif")
+                 .attr("font-size", "20px")
 
     svgc.append("rect")
             .attr("id","cmaprect")
