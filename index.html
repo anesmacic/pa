@@ -12,7 +12,7 @@
         
         <header>
             <h1>PREDICTIVE ANALYTICS</h1>
-            <p>crunching the <a>FARS</a> 2018 dataset</p>
+            <p>crunching the <a href="https://www-fars.nhtsa.dot.gov/Main/index.aspx">FARS</a> 2018 dataset</p>
         </header>   
 
         <div class="map-container">
@@ -27,15 +27,13 @@
         <div class="options-overlay">
             <div class="options-level">
             <button class="small-button" id="state" active="true" onclick="command()">STATE</button>
-            <button class="small-button">REGION</button>
-            <button class="small-button">HEATMAP</button>
+            <button class="small-button" id="region" active="false" onclick="commandregion()">REGION</button>
             </div>
             <div class="options-type">
                 <button class="small-button">Fatalities</button>
                 <button class="small-button">Medical Response Time</button>
                 <button class="small-button">Rural-Urban Ratio</button>
                 <button class="small-button" id="normalize" active="true" onclick="normalizebymildrivers()">Normalize per million drivers</button>
-
             </div>
         </div>
 
@@ -43,10 +41,13 @@
             <button class="button">TAKE A PEEK INTO THE DATA ANALYSIS</button>
         </div>
 
+        
+
         <div class="analysiscontainer">
             <h1>Missing Data Patterns</h1>
             <div class="analysiscontent">
-                <h1>Medical Response Time</h1>
+                <p>Medical Response Time</p>
+                
             </div>
         </div>
        
