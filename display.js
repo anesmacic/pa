@@ -217,7 +217,30 @@ function populatepaintnormalizer(){
                     .domain([minv,maxv])
                     .range(["#173F5F", "#b71c1c"])  
 }
+var paintrur = [];
 
+function populatepaintrur(){
+
+  var [...elements] = document.querySelectorAll("path")
+  var minv = -1;
+  var maxv = 1;
+ 
+    paintrur = d3.scaleLinear()
+                    .domain([minv,maxv])
+                    .range([ "#b71c1c","#173F5F"])  
+                    .unknown("rgb(0,0,0)")
+}
+
+function paintrural(){
+  populatepaintrur();
+  var [...elements] = document.querySelectorAll("path")
+  
+  elements.map((element) => {
+    element.setAttribute('fill',paintrur(element.getAttribute('rur')))
+    element.style.fill = paintrur(element.getAttribute('rur'))
+  })
+
+}
 function getActiveAttribute(){
   return activeAttribute;
 }
