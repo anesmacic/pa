@@ -62,11 +62,19 @@ var maxval = 0;
 var paintnormal = [];
 var minvaldrivers = 0;
 var maxvaldrivers = 0;
-
+var globaldata = [];
 // is performance better with queue and defer for jsons with async join function?
+
+d3.json("./d3data.json").then(
+  data => {
+    globaldata = data;  
+  }
+)
+
 
 d3.json("./gz_2010_us_040_00_500k.json").then(
   data =>{
+    console.log(globaldata)
     var fatalvalue = 0;
     Object.keys(fatals[0]).forEach(function(key) {
       fatalvalue = fatals[0][key]
