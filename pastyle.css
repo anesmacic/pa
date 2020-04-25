@@ -2,7 +2,7 @@
     margin: none;
     padding: none;
     display: inline-block;
-    background-color: #1E1A19;
+    background-color: rgb(27, 27, 27);
     color: white;
 }
 
@@ -25,7 +25,7 @@ header{
     max-width: 1000px;
     height: auto;
     align-items: center;
-    background-color: rgba(49, 43, 41, 0.534);
+    background-color:rgba(168, 165, 165, 0.178);
     color: white;
     padding: 10px 10px 10px 10px;
     z-index: 10;
@@ -81,24 +81,25 @@ p{
 button{
     border: 1px solid rgba(255, 255, 255, 0.151);
     height: 5vh;
-    margin-top: 20px;
+    margin-top: 30px;
     width: 100%;
     align-self: center;
     transition: all 0.2s ease-in-out;
     outline: none;
     opacity: 0.7;
+    cursor: pointer;
 }
 .small-button{
-    margin-top: 1px;
+    margin: 3px;
 }
 
-#state{
-background-color: rgba(197, 189, 188, 0.76);
+#state,#fatalities{
+    background-color:rgba(168, 165, 165, 0.178);
 
 }
 button:hover,.small-button:active{
     border: 2px solid rgba(255, 255, 255, 0.851);
-    background-color: rgba(197, 189, 188, 0.76);
+    background-color: rgba(168, 165, 165, 0.178);
 
 }
 
@@ -169,7 +170,7 @@ path{
 
 
 svg,rect{
-    fill: #1E1A19;
+    fill: rgb(27, 27, 27);
 
 }
 

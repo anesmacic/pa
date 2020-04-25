@@ -258,6 +258,11 @@ function normalizebymildrivers(){
   var element = document.querySelector("#state")
   element.setAttribute("active","false")
 
+  var element = document.querySelector("#normalize")
+  element.setAttribute("active","true")
+  element.style.backgroundColor = "rgba(168, 165, 165, 0.178)";
+  console.log(element)
+
 }
 
 function statelevel(){
