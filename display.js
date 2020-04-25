@@ -74,15 +74,16 @@ d3.json("./d3data.json").then(
 
 d3.json("./gz_2010_us_040_00_500k.json").then(
   data =>{
-    console.log(globaldata)
     var fatalvalue = 0;
-    Object.keys(fatals[0]).forEach(function(key) {
-      fatalvalue = fatals[0][key]
+    Object.keys(globaldata.FATALS).forEach(function(key) {
+      fatalvalue = globaldata.FATALS[key]
       if (minval > fatalvalue || minval === 0){
       minval = fatalvalue}
     if (maxval < fatalvalue){
       maxval = fatalvalue}
   }); 
+  console.log(maxval)
+  console.log(minval)
   var drivervalue = 0;
   Object.keys(drivers[0][0]).forEach(function(key) {
     drivervalue = drivers[0][0][key]
@@ -125,10 +126,14 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
             .attr("height", 20)
             .style("fill", "url(#linear-gradient)");
             
-       
+       console.log(globaldata)
+       const ar = Object.values(globaldata.STATE);
+       console.log(ar[0])
     data.features.map(feature => {
       {
-          fatalval = fatals[0][feature.properties.NAME]
+          fatalval = globaldata.FATALS[ar.indexOf(parseInt(feature.properties.STATE))]
+          mrt = globaldata.RESPONSE_TIME[ar.indexOf(parseInt(feature.properties.STATE))]
+          rur = globaldata.RUR[ar.indexOf(parseInt(feature.properties.STATE))]
           driversval = drivers[0][0][feature.properties.NAME]
           Object.keys(regiondetails[0]).some(function(key) {
                     if (regiondetails[0][key].includes(feature.properties.NAME)){
@@ -141,7 +146,9 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
             .attr("class", "feature")
             .attr('fatality',fatalval)
             .attr('region',region)
-            .attr('fatalityn',fatalval/driversval*1000000)
+            .attr('fatalityn',fatalval/driversval*1000000/4)
+            .attr('mrt',mrt)
+            .attr('rur',rur)
             .attr('ndrivers',driversval)
             .attr('name',feature.properties.NAME)
             .style('fill',paint(fatalval))
@@ -168,7 +175,10 @@ function hovering(){
       var str = 'State: '.concat(p.getAttribute("name"),'<br/>','Fatalities: ',
       p.getAttribute('fatality'),'<br/>',
       'Fatals/mil-driver: ',(parseInt(p.getAttribute('fatalityn')))
-      ,'</br>','Region: ',p.getAttribute('region'));
+      ,'</br>','Region: ',p.getAttribute('region')
+      ,'</br>','MRT: ',parseFloat(p.getAttribute('mrt')).toFixed(2)
+      ,'</br>','U/R: ',parseFloat(p.getAttribute('rur')).toFixed(2)
+      );
       state.innerHTML = str;
 }
 
