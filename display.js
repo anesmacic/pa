@@ -112,19 +112,19 @@ d3.json("./gz_2010_us_040_00_500k.json").then(
                   .attr("offset", "100%")
                   .attr("stop-color", "#b71c1c")
                   .attr("stop-opacity","1");
-    linearGradient.append("text")
-    .text('20val') 
-                  .attr("y","10px")
-                  .attr("x","20px")
-                  .attr("fill",'white')
-                  .attr("font-family", "sans-serif")
-                 .attr("font-size", "20px")
 
     svgc.append("rect")
             .attr("id","cmaprect")
             .attr("width", width)
             .attr("height", 20)
-            .style("fill", "url(#linear-gradient)");
+            .style("fill", "url(#linear-gradient)")
+            svgc.append("text")
+                  .text('20val') 
+                  .attr("y","14px")
+                  .attr("x","20px")
+                  .attr("fill",'white')
+                  .attr("font-family", "sans-serif")
+                 .attr("font-size", "12px");
             
        console.log(globaldata)
        const ar = Object.values(globaldata.STATE);
@@ -231,6 +231,7 @@ function populatepaintrur(){
                     .unknown("rgb(0,0,0)")
 }
 
+
 function paintrural(){
   populatepaintrur();
   var [...elements] = document.querySelectorAll("path")
@@ -318,6 +319,20 @@ function clearColoring(){
     element.style.fill = 'gray';
   })
 }
+
+
+function controller(){
+
+  // GROUP 1: scale :: @state, @region
+
+  // GROUP 2: var :: @fatals, @mrt, @rur
+
+  // GROUP 3: option :: @normalize
+
+
+}
+
+
 
 window.addEventListener('mousemove',cursor);
 svg.call(zoom);
